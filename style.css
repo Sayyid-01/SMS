@@ -1,0 +1,82 @@
+:root {
+    --primary-color: #4d373c;
+  }
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+nav {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    justify-content: space-between;
+    display: flex;
+    padding: 30px 50px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+nav > a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: large;
+    font-weight: 500;
+}
+form {
+    margin: 20px;
+    width: 40vw;
+    margin: auto;
+}
+.student-form h2{
+    margin: 30px;
+}
+input{
+    margin: 5px;
+    width: 80%;
+    padding: 8px 20px;
+    border-radius: 6px;
+    border: 2px solid rgb(39, 70, 83);
+}
+
+button{
+    padding: 8px;
+    border: 1px solid black;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    color: wheat;
+    margin-left: 40%;
+}
+.dashboard {
+    margin: 20px;
+}
+.student-list {
+    margin-top: 20px;
+    
+}
+.student-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.student-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.student-item > div {
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+.student-item > button{
+    cursor: pointer;
+}

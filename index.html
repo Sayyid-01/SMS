@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div>
+            <h1>Student Management System</h1>
+            <p>Batch-wise Students: <span id="batch-count">Loading...</span></p>
+        </div>
+
+        <a href="./dashboard.html">→ Dashboard</a>
+    </nav>
+
+    <form id="student-form">
+        <h2>Add Student</h2>
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="course" placeholder="Course" required>
+        <input type="text" id="unit" placeholder="Unit" required>
+        <input type="number" id="batch" placeholder="Batch" required>
+        <input type="file" id="image" accept="image/*" required>
+        <button type="submit">Add Student</button>
+    </form>
+    <script>
+        const form = document.getElementById("student-form");
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+
+        const name = document.getElementById("name");
+        const course = document.getElementById("course");
+        const unit = document.getElementById("unit");
+        const batch = document.getElementById("batch");
+        const image = document.getElementById("image");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // if (!name.value || !course.value || !unit.value || !batch.value || !image.files[0]) {
+            //     alert("Please fill all fields.");
+            //     return;
+            // }
+
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const userCredentials = {
+                    name: name.value,
+                    course: course.value,
+                    unit: unit.value,
+                    batch: batch.value,
+                    image: e.target.result,
+                };
+
+
+                students.push(userCredentials);
+                localStorage.setItem("students", JSON.stringify(students));
+                form.reset();
+                window.location.href = "dashboard.html";
+                // console.log("Student added:", userCredentials);
+            };
+
+            reader.readAsDataURL(image.files[0]);
+        });
+
+        const batchCount = {};
+
+        students.forEach(student => {
+            if (batchCount[student.batch]) {
+                batchCount[student.batch] += 1;
+            } else {
+                batchCount[student.batch] = 1;
+            }
+        });
+        document.getElementById("batch-count").innerText = JSON.stringify(batchCount);
+        // console.log(JSON.stringify(batchCount));
+        // update__Batch__Count();
+    </script>
+
+</body>
+
+</html>
